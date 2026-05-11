@@ -413,14 +413,14 @@ LRESULT CALLBACK CanvasProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             case SB_PAGEDOWN: g_scrollY += si.nPage; break;
             case SB_THUMBTRACK: g_scrollY = si.nTrackPos; break;
         }
-        g_scrollY = max(0, min(g_scrollY, g_totalHeight));
+        g_scrollY = std::max(0, std::min(g_scrollY, g_totalHeight));
         InvalidateRect(hwnd, NULL, FALSE);
         return 0;
     }
     case WM_MOUSEWHEEL: {
         int delta = GET_WHEEL_DELTA_WPARAM(wParam);
         g_scrollY -= delta / 3;
-        g_scrollY = max(0, g_scrollY);
+        g_scrollY = std::max(0, g_scrollY);
         InvalidateRect(hwnd, NULL, FALSE);
         return 0;
     }
